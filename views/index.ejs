@@ -9,11 +9,11 @@
 		<div class="container">
             <input name="advertiserChosen" type="hidden" value=""/>
 
-			<h1>Advertisers</h1>
+			<h2>Alpha Nodus Location Mapping</h2>
 			<div >
-                <h3> Choose Advertiser </h3>
                 <form action="/advertisers" method="post">
                 <select id="selectAdvs" name="selectAdvs">
+                    <optgroup label="Select Advertiser">
                      <% result.forEach(function(res) { %>
                         <option value ="<%= res.ad_addr %>"> <%= res.ad_addr %></option>
                     <% }); %>
