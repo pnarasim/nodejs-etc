@@ -3,6 +3,7 @@
  */
 
 var express = require('express');
+var bodyParser = require("body-parser");
 var routes = require('./routes');
 
 var http = require('http');
@@ -27,6 +28,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/advertisers', routes.getadvertisers);
+app.post('/advertisers', routes.getaggregators);
 
 var about = require('./routes/about');
 app.get('/about', about.about);

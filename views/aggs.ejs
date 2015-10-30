@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+<% include header %>
+<body>
+	<% include navbar %>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+            <h2> Aggregators for Advertiser 
+             <%= result[0].ad_addr %>
+         </h2>
+            <div>
+            <table id="selectAggs" align="center" border="2" style="width:100%">
+                <thead> <tr>
+                <th> Aggregator </th>
+                <th> RSSI </th>
+                <th> Last seen at </th>
+                </tr> </thead>
+                <tbody> <tr>
+                    <% result.forEach(function(res) { %>
+                    <td><%= res.agg_addr %></td>
+                    <td><%= res.rssi %></td>
+                    <td><%= res.updatetime %></td>
+                </tr></tbody>
+                <% }); %>
+            </table>
+            </div>
+		</div>
+	</div>
+
+	<div class="container">
+		<hr>
+
+		<% include footer %>
+	</div>
+	<!-- /container -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#home').addClass("active");
+		});
+	</script>
+</body>
+</html>

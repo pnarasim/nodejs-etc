@@ -12,25 +12,15 @@
 			<h1>Advertisers</h1>
 			<div >
                 <h3> Choose Advertiser </h3>
-
-                <select id="selectAdvs" onchange="onChange()"  >
+                <form action="/advertisers" method="post">
+                <select id="selectAdvs" name="selectAdvs">
                      <% result.forEach(function(res) { %>
                         <option value ="<%= res.ad_addr %>"> <%= res.ad_addr %></option>
                     <% }); %>
                 </select>
+                <input type="submit"/>
+            </form>
 			</div>
-            <h2> Aggregators for this Advertiser </h2>
-            <div>
-            <table id="selectAggs" align="center" border="2" style="width:100%">
-                <thead> <tr>
-                <th> Aggregator </th>
-                <th> RSSI </th>
-                <th> Last seen at </th>
-                </tr> </thead>
-                <tbody> <tr>
-                </tr></tbody>
-            </table>
-            </div>
 		</div>
 	</div>
 
@@ -51,6 +41,10 @@
             var selectBox = document.getElementById("selectAdvs");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
             alert(selectedValue);
+            /*$.post('/advertisers', {message: selectedValue}, function(returnedData){
+                        console.log("Post returned data: " + returnedData);
+                        });
+*/
             //session.setAttribute("advertiserChosen", selectedValue);
 
     }
