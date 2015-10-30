@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Advertiser">
+<html >
 <% include header %>
 <body>
 	<% include navbar %>
@@ -7,33 +7,30 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Advertisers</h1>
-			<div ng-controller="AdvertiserController">
-                <h3> All existing advertisers </h3>
+            <input name="advertiserChosen" type="hidden" value=""/>
 
-		<select>
-        <% result.forEach(function(res) { %>
-        <option value = \" <%= res.ad_addr %> \"> <%= res.ad_addr %></option>
-        <% }); %>
-</select>
-                <!--
-				<form ng-submit="addadvertiser()">
-					<div class="col-lg-6">
-						<div class="input-group input-group-lg">
-							<input class="form-control" type="text" ng-model="advertiserText" size="30" placeholder="add new advertiser here"> 
-							<input class="form-control" type="text" ng-model="aggregatorText" size="30" placeholder="add new aggregator here"> 
-							<input class="form-control" type="text" ng-model="updatetimeText" size="30" placeholder="add new updatetime here"> 
-							<input class="form-control" type="text" ng-model="rssiText" size="30" placeholder="add new rssi here"> 
-							
-                                <span
-								class="input-group-btn">
-								<button class="btn btn-primary btn-lg" type="submit">Add</button>
-							</span>
-						</div>
-					</div>
-				</form>
--->
+			<h1>Advertisers</h1>
+			<div >
+                <h3> Choose Advertiser </h3>
+
+                <select id="selectAdvs" onchange="onChange()"  >
+                     <% result.forEach(function(res) { %>
+                        <option value ="<%= res.ad_addr %>"> <%= res.ad_addr %></option>
+                    <% }); %>
+                </select>
 			</div>
+            <h2> Aggregators for this Advertiser </h2>
+            <div>
+            <table id="selectAggs" align="center" border="2" style="width:100%">
+                <thead> <tr>
+                <th> Aggregator </th>
+                <th> RSSI </th>
+                <th> Last seen at </th>
+                </tr> </thead>
+                <tbody> <tr>
+                </tr></tbody>
+            </table>
+            </div>
 		</div>
 	</div>
 
@@ -48,5 +45,16 @@
 			$('#home').addClass("active");
 		});
 	</script>
+    <script type="text/javascript">
+
+        function onChange() {
+            var selectBox = document.getElementById("selectAdvs");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            alert(selectedValue);
+            //session.setAttribute("advertiserChosen", selectedValue);
+
+    }
+    </script>
+
 </body>
 </html>
