@@ -12,6 +12,7 @@
 			<h2>Alpha Nodus Location Mapping</h2>
 			<div >
                 <form action="/advertisers" method="post">
+                 <input type="hidden" name="adv" value="<%= result[0].ad_addr %> ">
                 <select id="selectAdvs" name="selectAdvs">
                     <optgroup label="Select Advertiser">
                      <% result.forEach(function(res) { %>

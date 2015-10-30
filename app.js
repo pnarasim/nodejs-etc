@@ -28,7 +28,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/advertisers', routes.getadvertisers);
-app.post('/advertisers', routes.getaggregators);
+app.post('/advertisers', routes.gettimeseen);
+app.post('/aggregators', routes.getaggregators);
 
 var about = require('./routes/about');
 app.get('/about', about.about);

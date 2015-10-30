@@ -24,11 +24,12 @@ exports.getadvertisers = function(req, res) {
     });
 };
 
-exports.getaggregators = function(req, res) {
-    console.log("AHA get aggs");
+exports.gettimeseen = function(req, res) {
+    console.log("AHA get time seen");
     var advs = req.body.selectAdvs;
     console.log("Got post request with advertiser: " + advs);
     models.advertisers.findAll({
+        group: ['updatetime'],
         where: {
             ad_addr: advs
         }
@@ -37,10 +38,32 @@ exports.getaggregators = function(req, res) {
         //console.log(result);
         //res.json(result); 
         //res.end();
-        res.render("aggs", {title: 'BLE Aggregators', result: result  
+        res.render("seenat", {title: 'BLE Times', result: result  
         });
     });
     };
+
+
+exports.getaggregators = function(req, res) {
+    console.log("AHA get aggregators");
+    var time = req.body.selectTime;
+    var adv = req.body.adv;
+    console.log("Got post request with time: " + time + " and advertiser: " + adv);
+    models.advertisers.findAll({
+        group: ['agg_addr'],
+        where: {
+            updatetime: time,
+            ad_addr: adv
+        }
+        }
+    ).then(function(result){
+        console.log(result);
+        //res.json(result); 
+        //res.end();
+        res.render("aggs", {title: 'BLE Aggregators', result: result  
+        });
+    });
+};
 
 
 

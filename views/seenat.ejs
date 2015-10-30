@@ -7,21 +7,19 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-            <h2> Advertiser <%= result[0].ad_addr %> at <%= result[0].updatetime %> seen by following aggregators
+            <h2> Advertiser <%= result[0].ad_addr %> last seen at these times: Select one to see location at that time
             </h2>
             <div>
             <form action="/aggregators" method="post">
              <input type="hidden" name="adv" value="<%= result[0].ad_addr %> ">
-              <table border="2" width="25%"> <thead> <tr>
-                          <th> Aggregator</th>
-                          <th> RSSI </th>
-                        </tr> </thead>
-                        <tbody> <tr>
-                            <% result.forEach(function(res) { %>
-                        <td> <%= res.agg_addr %> </td>
-                        <td> <%= res.rssi %> </td>
-                            <% }); %>
-                        </tr></tbody>
+            <select id="selectTime" name="selectTime">
+                <% result.forEach(function(res) { %>
+                <option>
+                    <%= res.updatetime %>
+                </option>
+                <% }); %>
+            </select>
+            <input type="submit"/>
             </form>
             </div>
 		</div>
