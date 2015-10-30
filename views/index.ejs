@@ -11,28 +11,11 @@
 			<div ng-controller="AdvertiserController">
                 <h3> All existing advertisers </h3>
 
-<table st-table="rowCollection" class="table table-striped">
-	<thead>
-	<tr>
-		<th>Advertiser</th>
-		<th>Aggregator</th>
-		<th>updatetime</th>
-		<th>rssi</th>
-	</tr>
-	</thead>
-	<tbody>
-    <!--<tr ng-repeat="advertiser in advs"> 
-    -->
+		<select>
         <% result.forEach(function(res) { %>
-    <tr >
-        <td><%= res.ad_addr %> </td>
-        <td><%= res.agg_addr %> </td>
-        <td><%= res.updatetime %> </td>
-        <td><%= res.rssi %> </td>
-	</tr>
+        <option value = \" <%= res.ad_addr %> \"> <%= res.ad_addr %></option>
         <% }); %>
-	</tbody>
-</table>
+</select>
                 <!--
 				<form ng-submit="addadvertiser()">
 					<div class="col-lg-6">
