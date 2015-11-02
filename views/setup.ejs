@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<% include header %>
+<body>
+	<% include navbar %>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<div >
+
+			<h2>Alpha Nodus Location Mapping</h2>
+            <h3> Enter location info <h3>
+                <form action="/markaggs" method="post" >
+                    Room Width <input id="roomxval" name="roomxval"> <br>
+                    Room Height  <input id="roomyval" name="roomyval"> <br>
+                    Number of agggregators  <input id="numaggs" name="numaggs"> <br>
+                <input type="submit"/>
+            </form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<hr>
+
+		<% include footer %>
+	</div>
+	<!-- /container -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#home').addClass("active");
+		});
+	</script>
+
+</body>
+</html>

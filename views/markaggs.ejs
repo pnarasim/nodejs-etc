@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<% include header %>
+<body>
+	<% include navbar %>
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+
+	</div>
+    </div>
+</div>
+            <h2> Mark the position of the <%= numaggs %> Aggregators in this room of size <%= roomx %> X <%= roomy %> </h2>
+            <form action="/remap" method="post">
+                <h3> Room of size <%= roomx %> <%= roomy %> </h3>
+                <svg width="<%= roomx %>" height="<%= roomy %>">
+                    <rect x="50" y="20" width="<%= roomx %>" height="<%= roomy %>"
+                    style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+            </svg>
+            </form>
+
+	<div class="container">
+
+		<% include footer %>
+	</div>
+	<!-- /container -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#home').addClass("active");
+		});
+	</script>
+</body>
+</html>
+

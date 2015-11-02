@@ -27,9 +27,12 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.get('/advertisers', routes.getadvertisers);
+app.get('/', routes.index);
+app.get('/setup', routes.dosetup);
+app.post('/markaggs', routes.domarkaggs);
 app.post('/advertisers', routes.gettimeseen);
 app.post('/aggregators', routes.getaggregators);
+app.post('/mapit', routes.mapit);
 
 var about = require('./routes/about');
 app.get('/about', about.about);

@@ -10,7 +10,7 @@
             <h2> Advertiser <%= result[0].ad_addr %> at <%= result[0].updatetime %> seen by following aggregators
             </h2>
             <div>
-            <form action="/aggregators" method="post">
+            <form action="/mapit" method="post">
              <input type="hidden" name="adv" value="<%= result[0].ad_addr %> ">
               <table border="2" width="35%"> <thead> <tr>
                           <th> Aggregator</th>
@@ -22,13 +22,17 @@
                         <td> <%= res.rssi %> </td>
                             <% }); %>
                         </tr></tbody>
+                <!--<input type="submit" class="Map it" value="Map it">
+                -->
             </form>
+
+
+
 	</div>
     </div>
 </div>
 	<div class="container">
 
-		<% include footer %>
 	</div>
 	<!-- /container -->
 	<script type="text/javascript">
@@ -36,6 +40,7 @@
 			$('#home').addClass("active");
 		});
 	</script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </body>
 </html>
 
