@@ -32,8 +32,12 @@ exports.domarkaggs = function(req, res) {
     var roomx = req.body.roomxval;
     var roomy = req.body.roomyval;
     var numaggs = req.body.numaggs;
+    models.advertisers.findAll({
+        group: ['agg_addr'],
+    }).then(function(result){
 
-    res.render("markaggs", {title: 'Location', roomx: roomx, roomy: roomy, numaggs: numaggs});
+        res.render("markaggs", {title: 'Location', result: result, roomx: roomx, roomy: roomy, numaggs: numaggs});
+    });
 };
 
 exports.getadvertisers = function(req, res) {

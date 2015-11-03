@@ -7,15 +7,30 @@
 			$('#home').addClass("active");
 		});
     
-    function updateData(xpos, ypos) {
-           var svgcont = d3.select("svg")
-                            .append("circle")
-                            .attr("cx", xpos)
-                            .attr("cy", ypos)
-                            .attr("r", 5)
-                            .style("fill", "purple");
+    function updateData(xpos, ypos, aggname) {
+        var svgcont = d3.select("svg");
+        
+
+         svgcont.append("circle")
+                         .attr("cx", xpos)
+                         .attr("cy", ypos)
+                         .attr("r", 5);
+
+         svgcont.append('text')
+                .attr('x', xpos)
+                .attr('y', ypos)
+                .attr('height', 'auto')
+                .attr('text-anchor', 'middle')
+                .text(aggname)
+                .attr('fill', 'red');
+
     }
 
+    function clearAll() {
+        d3.select("svg").selectAll("circle").remove();
+        d3.select("svg").selectAll("text").remove();
+
+    }
      </script>
 	<% include navbar %>
 
@@ -29,16 +44,25 @@
             <h2> Indicate the position of the <%= numaggs %> Aggregators in this room of size <%= roomx %> X <%= roomy %> </h2>
                 <div>           
                 <% for (i=0; i<numaggs; i++) { %>
-                Aggregator <%= i %> X <input name="aggx<%= i %>" id="aggx<%= i %>"> 
+                Aggregator <%= i %> X 
+                <select id="selectAgg<%= i %>" name="selectAgg<%= i %>">
+                    <optgroup label="Select Aggregator">
+                     <% result.forEach(function(res) { %>
+                        <option value ="<%= res.agg_addr %>"> <%= res.agg_addr %></option>
+                    <% }); %>
+                </select>  <input name="aggx<%= i %>" id="aggx<%= i %>"> 
                 Y <input name="aggy<%= i %>" id="aggy<%= i %>"> 
-                <input name="updateRoom" type="button" value="updateRoom" onclick="updateData(document.getElementById('aggx<%= i %>').value, document.getElementById('aggy<%= i %>').value)"> <br>
+                <input name="updateRoom" type="button" value="updateRoom" onclick="updateData(document.getElementById('aggx<%= i %>').value, document.getElementById('aggy<%= i %>').value, document.getElementById('selectAgg<%= i %>').value)"> <br>
                 <% } %>
                 </div>
-                <h3> Room of size <%= roomx %> <%= roomy %> </h3>
+                <br>
+                <input type="button" value="Clear All Aggregators" onclick="clearAll()">
+
+
+                <h3> Room of size <%= roomx %> X  <%= roomy %> </h3>
                 <svg width="<%= roomx %>" height="<%= roomy %>">
                     <rect id="myroom" x="1" y="1" width="<%= roomx %>" height="<%= roomy %>"
                     style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
-                    
                 </svg>
 
 	<div class="container">
