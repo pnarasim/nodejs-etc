@@ -2,6 +2,21 @@
 <html >
 <% include header %>
 <body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#home').addClass("active");
+		});
+    
+    function updateData(xpos, ypos) {
+           var svgcont = d3.select("svg")
+                            .append("circle")
+                            .attr("cx", xpos)
+                            .attr("cy", ypos)
+                            .attr("r", 5)
+                            .style("fill", "purple");
+    }
+
+     </script>
 	<% include navbar %>
 
 	<!-- Main jumbotron for a primary marketing message or call to action -->
@@ -11,25 +26,27 @@
 	</div>
     </div>
 </div>
-            <h2> Mark the position of the <%= numaggs %> Aggregators in this room of size <%= roomx %> X <%= roomy %> </h2>
-            <form action="/remap" method="post">
+            <h2> Indicate the position of the <%= numaggs %> Aggregators in this room of size <%= roomx %> X <%= roomy %> </h2>
+                <div>           
+                <% for (i=0; i<numaggs; i++) { %>
+                Aggregator <%= i %> X <input name="aggx<%= i %>" id="aggx<%= i %>"> 
+                Y <input name="aggy<%= i %>" id="aggy<%= i %>"> 
+                <input name="updateRoom" type="button" value="updateRoom" onclick="updateData(document.getElementById('aggx<%= i %>').value, document.getElementById('aggy<%= i %>').value)"> <br>
+                <% } %>
+                </div>
                 <h3> Room of size <%= roomx %> <%= roomy %> </h3>
                 <svg width="<%= roomx %>" height="<%= roomy %>">
-                    <rect x="50" y="20" width="<%= roomx %>" height="<%= roomy %>"
+                    <rect id="myroom" x="1" y="1" width="<%= roomx %>" height="<%= roomy %>"
                     style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
-            </svg>
-            </form>
+                    
+                </svg>
 
 	<div class="container">
 
 		<% include footer %>
 	</div>
 	<!-- /container -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#home').addClass("active");
-		});
-	</script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
 </body>
 </html>
 
